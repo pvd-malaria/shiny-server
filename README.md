@@ -98,6 +98,14 @@ Acesse o servidor e verifique se alguém erro aconteceu com o serviço utilizand
 
 Se nada parece anormal, entre em contato com a administração do projeto se não houve algum bloqueio no firewall ou algum tipo de falha de roteamento ao servidor.
 
+#### Deployment manual
+
+Em uma caso de emergência ou em que será necessária intervenção manual (queda do github, falha em comunicação com o servidor, etc) é possível realizar o deploy manual. PAra isso, primeiramente faça o download do artefato desejado pela página de sumário de execução do Github Actions (ou a versão corrente do repositório). Se foi obtido o artefato do Github Actions, será necessário descompactar
+
+Utilizando alguma ferramenta como `rsync` (Ou, para uma versão visual, `filezilla`), faça o upload para a pasta descrita na sessão [Sobre pastas no servidor](#estrutura-de-pastas-dentro-do-servidor).
+
+É importante garantir que esteja utilizando a chave de acesso correta apra esse processo, então atente para isso durante a configuração, execução do processo.
+
 #### Desejo gerar uma nova chave SSH apra deploy da aplicação, como faço?
 
 O seguinte comando pode ser usado para gerar uma nova chave para o deploy.
