@@ -24,7 +24,7 @@ O repositório está estruturado da seguinte forma:
 
 ## Execução local
 
-> Importante! PAra execução local do projeto como um todo assumimos que você possua o docker e docker-compose configurados na sua máquina. Instruções sobre esse processo podem ser encontradas no [site oficial](https://docs.docker.com/engine/install/) 
+> Importante! Para execução local do projeto como um todo assumimos que você possua o docker e docker-compose configurados na sua máquina. Instruções sobre esse processo podem ser encontradas no [site oficial](https://docs.docker.com/engine/install/) 
 
 1. Clone o projeto
 
@@ -52,7 +52,7 @@ Todo o processo de deployment da aplicação está automatizado utilizando Githu
 > WIP
 
 
-## Deployment Secrets
+### Deployment Secrets
 
 Para o deploy ter sucesso são necessários que dois SECRETS tenha sido definidos para o repositório:
 
@@ -74,9 +74,33 @@ ssh dev@promalaria.nepo.unicamp.br -i <caminho_da_chave_ssh>
 
 E digitar a senha associada a chave.
 
+#### Aplicação está offline?
+
+Acesse o servidor e verifique se alguém erro aconteceu com o serviço utilizando o comando `docker-compose logs`.
+
+Se nada parece anormal, entre em contato com a administração do projeto se não houve algum bloqueio no firewall ou algum tipo de falha de roteamento ao servidor.
+
+#### Desejo gerar uma nova chave SSH apra deploy da aplicação, como faço?
+
+O seguinte comando pode ser usado para gerar uma nova chave para o deploy.
+
+```bash
+ssh-keygen -t ed25519 -f <caminho_para_salvar_a_chave> -C "<email_relacionado_a_chave>"
+```
+
+Isso irá geram um novo par de chaves pública (extensão `.pub`) e privada.
+
+Uma vez realizado, atualize o secret `SSH_DEPLOY_KEY` com o novo valor (obtido com o comando `cat <chave_nova>`).
+
 #### A aplicação não refletiu as últimas mudanças que foram feitas na `master`
 
 Verifique se a última execução da pipeline foi bem sucedida, se foi, verifique se o seu navegador está realizando o cache dos dados da aplicação, se possível remova. Se nenhuma das auternativas anterior funcionar, realize ou solicite a conexão ssh com o servidor, navegue ao diretório da aplicação e realize um restart nos serviço docker com `docker-compose up -d`
+
+#### Desejo fazer o deploy em um novo servidor, como fazer?
+
+Primeiramente é necessário que um webserver (Apache2 ou Nginx por exemplo) esteja propriamente configurado com um dos arquivos de configuração providos na pasta `conf`.
+
+Certifique-se que a configuração do repositório com os secrets mencionados na sessão [**Deployment Secrets**](#deployment-secrets) foi realizada. Se novas chaves de acesso foram geradas, tenha certeza que o repositório teve esse valor atualizado.
 
 #### É possível fazer deploy de outras branches além da `master`?
 
