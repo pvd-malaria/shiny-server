@@ -58,8 +58,17 @@ No caso, a pasta `promalaria-orchestrator` contém também o arquivo `docker-com
 
 Todo o processo de deployment da aplicação está automatizado utilizando Github Actions, cuja pipeline é definida em `.github/workflows/deploy-r-apps.yml`.
 
-> WIP
+Toda vez que há um push para a branch `master` o Github dispara uma pipeline de deploy, o processo utiliza 3 passos:
 
+1. Um artefato `zip` é criado utilizando o conteúdo da pasta `src` como base.
+2. Um próximo estágio obtém o arquivo `zip`, e descompacta o conteúdo para o servidor
+3. Utilizando um processo de `rsync` os arquivos são enviados para a pasta destino da aplicação no servidor.
+
+Pontos importantes:
+
+- Essa pipeline é determinística, significando que se o primeiro passo falhar, nenhum dos outros será possível;
+- Nós realizamos o armazenamento do arquivo `zip` dos apps para fins de arquivamento e na eventual necessidade de um deploy manual.
+- Uma otimização seria o envio de um arquivo `zip` para o servidos ao invés de enviar eles descompactados, porém isso implicaria em: permitir que a pipeline realizasse comandos arbitrários no servidor, ou algum mecanismo de detecção (algo como um `watch`) que realizasse a descompactação dos arquivos e limpeza dos artefatos anteriores.
 
 ### Deployment Secrets
 
