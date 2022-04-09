@@ -22,6 +22,15 @@ O repositório está estruturado da seguinte forma:
 - Arquivo `docker-compose.local.yml`: Arquivo docker-compose para deploy e execução local da aplicação
 - Arquivo `docker-compose.yml`: Arquivo docker-compose utilizado no servidor para deploy.
 
+
+## Estrutura de pastas dentro do servidor
+
+No servidor, no memonto, o alvo de nosso deploy é a pasta `promalaria-orchestrator/shiny-server`, localizada na pasta pessoal do usuário `dev` no servidor.
+
+Esta é a pasta que abriga todos os dados utilizados pelo Shiny Server durante sua execução. A pasta `apps` contém os apps em sí, enquanto a pasta `logs`contém os logs da aplicação e a pasta `conf` arquivos de configuração do shiny, gerados automaticamente, mas permitindo alterações em tempo de execução.
+
+No caso, a pasta `promalaria-orchestrator` contém também o arquivo `docker-compose.yml` utilizado para inicializar a aplicação no servidor. Esse arquivo vincula a pasta `apps` e a pasta `logs` com as pastas relacionadas no container shiny, utilizando mapeamento de volumes para isso. 
+
 ## Execução local
 
 > Importante! Para execução local do projeto como um todo assumimos que você possua o docker e docker-compose configurados na sua máquina. Instruções sobre esse processo podem ser encontradas no [site oficial](https://docs.docker.com/engine/install/) 
