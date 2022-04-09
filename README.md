@@ -8,11 +8,11 @@ Essa é uma aplicação que se utiliza de ShinyApps, escritos em R, rodando dent
 
 O repositório está estruturado da seguinte forma:
 
-- Pasta `.github/`:
-- Pasta `conf`
-- Pasta `src`
-- Arquivo `docker-compose.local.yml`
-- Arquivo `docker-compose.yml`
+- Pasta `.github/`: Contém arquivos de configuração específicos do Github, como a definição das pipelines utilizadas pelo projeto
+- Pasta `conf`: Contém arquivos de configuração utilizados no servidor. Utilizamos a versão do Apache, porém está disponível uma versão para o `nginx`.
+- Pasta `src`: Contém os ShinyApps, qualquer applicação que queria que esteja disponível para o usuário precisa estar contida dentro dessa pasta, inicialmente populada com apps exemplo do projeto Shiny.
+- Arquivo `docker-compose.local.yml`: Arquivo docker-compose para deploy e execução local da aplicação
+- Arquivo `docker-compose.yml`: Arquivo docker-compose utilizado no servidor para deploy.
 
 ## Execução local
 
