@@ -4,6 +4,14 @@ Esse repositório contém os Apps Shiny sendo utilizados pelo projeto promalaria
 
 Essa é uma aplicação que se utiliza de ShinyApps, escritos em R, rodando dentro de um container docker. No ambiente de produção, a aplicação fica por trás de um proxy Apache2 rodando em um servidor Ubuntu Server 20.04. 
 
+## Dependências do projeto
+
+- Webserver (Apache2 ou Nginx);
+- Docker
+- docker-compose
+
+É possível realizar o deployment com outras ferramentas da mesma categoria, mas seria necessário adaptar o processo para tais ferramentas. Essa documentação não ira cobrir esse caso de uso.
+
 ## Estrutura do repositório
 
 O repositório está estruturado da seguinte forma:
