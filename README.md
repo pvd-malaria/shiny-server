@@ -108,5 +108,5 @@ No momento não, porém utilizando hosts virtuais similares aos que são utiliza
 
 ## Authors
 
-- [@deadpyxel](https://www.github.com/deadpyxel) - Robson Cruz
+- [Time Promalaria](https://github.com/pvd-malaria)
 
