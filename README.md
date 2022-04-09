@@ -132,6 +132,14 @@ Certifique-se que a configuração do repositório com os secrets mencionados na
 
 No momento não, porém utilizando hosts virtuais similares aos que são utilizados hoje essa capacidade pode ser adquirida.
 
+## Otimizações e melhorias
+
+Possíveis pontos de melhoria/próximos passos seriamm:
+
+- Trabalhar com múltiplos ambientes de deploy, utilizando hosts virtuais do webserver e uma pipeline de deploy parametrizada por branch.
+- Tageamento e geração de release automático.
+- Transformar o repositório em uma imagem docker, e realizar o deploy dela no lugar. Hoje isso não é feito pelo fato que pela característica da aplicação, arquivos utilizados para o processamento de dados também teria que ser mantidos sobre controle de versão, o que iria aumentar drasticamente o tamanho da imagem docker. Outra opção seria trabalhar com imagens multistage, porém isso apresentou algumas incompatibilidades durante os testes.
+
 ## Authors
 
 - [Time Promalaria](https://github.com/pvd-malaria)
