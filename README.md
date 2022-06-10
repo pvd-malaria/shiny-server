@@ -2,7 +2,7 @@
 
 Esse repositório contém os Apps Shiny sendo utilizados pelo projeto promalaria.
 
-Essa é uma aplicação que se utiliza de ShinyApps, escritos em R, rodando dentro de um container docker. No ambiente de produção, a aplicação fica por trás de um proxy Apache2 rodando em um servidor Ubuntu Server 20.04. 
+Essa é uma aplicação que se utiliza de ShinyApps, escritos em R, rodando dentro de um container docker. No ambiente de produção, a aplicação fica por trás de um proxy Apache2 rodando em um servidor Ubuntu Server 20.04.
 
 ## Dependências do projeto
 
@@ -11,6 +11,15 @@ Essa é uma aplicação que se utiliza de ShinyApps, escritos em R, rodando dent
 - docker-compose
 
 É possível realizar o deployment com outras ferramentas da mesma categoria, mas seria necessário adaptar o processo para tais ferramentas. Essa documentação não ira cobrir esse caso de uso.
+
+## Instalação de pacotes usados pelos Apps
+
+No Arquivo Dockerfile contém comandos para instalação de pacotes dentro do R.
+Exemplo de comando:
+
+```
+  RUN R -e "install.packages('plotly')"
+```
 
 ## Estrutura do repositório
 
@@ -21,7 +30,7 @@ O repositório está estruturado da seguinte forma:
 - Pasta `src`: Contém os ShinyApps, qualquer applicação que queria que esteja disponível para o usuário precisa estar contida dentro dessa pasta, inicialmente populada com apps exemplo do projeto Shiny.
 - Arquivo `docker-compose.local.yml`: Arquivo docker-compose para deploy e execução local da aplicação
 - Arquivo `docker-compose.yml`: Arquivo docker-compose utilizado no servidor para deploy.
-
+- Arquivo `Dockerfile`: Arquivo Dockerfile contem lista de comandos de instalação dos pacotes usados pelos app desenvolvidos em R.
 
 ## Estrutura de pastas dentro do servidor
 
@@ -29,16 +38,16 @@ No servidor, no memonto, o alvo de nosso deploy é a pasta `promalaria-orchestra
 
 Esta é a pasta que abriga todos os dados utilizados pelo Shiny Server durante sua execução. A pasta `apps` contém os apps em sí, enquanto a pasta `logs`contém os logs da aplicação e a pasta `conf` arquivos de configuração do shiny, gerados automaticamente, mas permitindo alterações em tempo de execução.
 
-No caso, a pasta `promalaria-orchestrator` contém também o arquivo `docker-compose.yml` utilizado para inicializar a aplicação no servidor. Esse arquivo vincula a pasta `apps` e a pasta `logs` com as pastas relacionadas no container shiny, utilizando mapeamento de volumes para isso. 
+No caso, a pasta `promalaria-orchestrator` contém também o arquivo `docker-compose.yml` utilizado para inicializar a aplicação no servidor. Esse arquivo vincula a pasta `apps` e a pasta `logs` com as pastas relacionadas no container shiny, utilizando mapeamento de volumes para isso.
 
 ## Execução local
 
-> Importante! Para execução local do projeto como um todo assumimos que você possua o docker e docker-compose configurados na sua máquina. Instruções sobre esse processo podem ser encontradas no [site oficial](https://docs.docker.com/engine/install/) 
+> Importante! Para execução local do projeto como um todo assumimos que você possua o docker e docker-compose configurados na sua máquina. Instruções sobre esse processo podem ser encontradas no [site oficial](https://docs.docker.com/engine/install/)
 
 1. Clone o projeto
 
 ```bash
-  git clone https://github.com/pvd-malaria/shiny-server.git 
+  git clone https://github.com/pvd-malaria/shiny-server.git
   # ou git clone git@github.com:pvd-malaria/shiny-server.git se estiver usando SSH
 ```
 
@@ -143,4 +152,3 @@ Possíveis pontos de melhoria/próximos passos seriamm:
 ## Authors
 
 - [Time Promalaria](https://github.com/pvd-malaria)
-
