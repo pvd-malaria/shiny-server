@@ -1,7 +1,9 @@
-version: "3"
+version: '3'
 services:
   promalaria-shiny:
-    image: rocker/shiny:4
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: promalaria-shiny
     volumes:
       - ./src/:/srv/shiny-server/
