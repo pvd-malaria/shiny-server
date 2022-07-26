@@ -32,6 +32,8 @@ RUN R -e "install.packages('tmaptools')"
 RUN R -e "install.packages('tidyr')"
 RUN R -e "install.packages('tidyverse')"
 RUN R -e "install.packages('viridisLite')"
+RUN R -e "install.packages('ggdark')"
+RUN R -e "install.packages('janitor')"
 
 # # Install R Packages inside R from github
 RUN R -e "library(devtools); install_github('ramnathv/rCharts')"
