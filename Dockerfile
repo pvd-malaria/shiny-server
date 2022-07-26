@@ -1,5 +1,8 @@
 FROM rocker/shiny:4
 
+# Change user
+RUN su shiny
+
 # Install R Base Packages
 RUN apt-get -y update && apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
