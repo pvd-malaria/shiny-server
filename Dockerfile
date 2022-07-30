@@ -1,7 +1,7 @@
 FROM rocker/shiny:4
 
 # Change user
-RUN su shiny
+USER shiny
 
 # Install tools
 RUN apt install vim -y
