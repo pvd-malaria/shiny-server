@@ -4,7 +4,7 @@ FROM rocker/shiny:4
 RUN su shiny
 
 # Install tools
-RUN apt install vim
+RUN apt install vim -y
 
 # Install R Base Packages
 RUN apt-get -y update && apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
