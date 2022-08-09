@@ -1,8 +1,5 @@
 FROM rocker/shiny:4
 
-# Change user
-USER shiny
-
 # Install tools
 RUN apt install vim -y
 
@@ -10,30 +7,33 @@ RUN apt install vim -y
 RUN apt-get -y update && apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
 # Install R Packages inside R
-RUN R -e "install.packages('devtools')"
-RUN R -e "install.packages('plotly')"
-RUN R -e "install.packages('forcats')"
-RUN R -e "install.packages('data.table')"
-RUN R -e "install.packages('dplyr')"
-RUN R -e "install.packages('DT')"
-RUN R -e "install.packages('heatmaply')"
-RUN R -e "install.packages('htmltools')"
-RUN R -e "install.packages('leaflet')"
-RUN R -e "install.packages('rsconnect')"
-RUN R -e "install.packages('sf')"
-RUN R -e "install.packages('shinydashboard')"
-RUN R -e "install.packages('shinyjs')"
-RUN R -e "install.packages('shinythemes')"
-RUN R -e "install.packages('shinyBS')"
-RUN R -e "install.packages('shinyWidgets')"
-RUN R -e "install.packages('tmap')"
-RUN R -e "install.packages('rintrojs')"
-RUN R -e "install.packages('tmaptools')"
-RUN R -e "install.packages('tidyr')"
-RUN R -e "install.packages('tidyverse')"
-RUN R -e "install.packages('viridisLite')"
-RUN R -e "install.packages('ggdark')"
-RUN R -e "install.packages('janitor')"
+RUN R -e "install.packages('devtools', dependences=TRUE)"
+RUN R -e "install.packages('plotly', dependences=TRUE)"
+RUN R -e "install.packages('forcats', dependences=TRUE)"
+RUN R -e "install.packages('data.table, dependences=TRUE')"
+RUN R -e "install.packages('dplyr, dependences=TRUE')"
+RUN R -e "install.packages('DT, dependences=TRUE')"
+RUN R -e "install.packages('heatmaply, dependences=TRUE')"
+RUN R -e "install.packages('htmltools, dependences=TRUE')"
+RUN R -e "install.packages('leaflet', dependences=TRUE)"
+RUN R -e "install.packages('rsconnect', dependences=TRUE)"
+RUN R -e "install.packages('sf', dependences=TRUE)"
+RUN R -e "install.packages('shinydashboard', dependences=TRUE)"
+RUN R -e "install.packages('shinyjs', dependences=TRUE)"
+RUN R -e "install.packages('shinythemes', dependences=TRUE)"
+RUN R -e "install.packages('shinyBS', dependences=TRUE)"
+RUN R -e "install.packages('shinyWidgets', dependences=TRUE)"
+RUN R -e "install.packages('tmap', dependences=TRUE)"
+RUN R -e "install.packages('rintrojs', dependences=TRUE)"
+RUN R -e "install.packages('tmaptools', dependences=TRUE)"
+RUN R -e "install.packages('tidyr', dependences=TRUE)"
+RUN R -e "install.packages('tidyverse', dependences=TRUE)"
+RUN R -e "install.packages('viridisLite', dependences=TRUE)"
+RUN R -e "install.packages('ggdark', dependences=TRUE)"
+RUN R -e "install.packages('janitor', dependences=TRUE)"
 
 # # Install R Packages inside R from github
 RUN R -e "library(devtools); install_github('ramnathv/rCharts')"
+
+# Change user
+USER shiny
