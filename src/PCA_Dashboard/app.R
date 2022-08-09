@@ -402,11 +402,12 @@ ui <- bootstrapPage(
                           
                           
                           
-                          span(tags$i(h5("Por exemplo, quando se olha para o mapa de calor ao lado, para o ano de 2019, em relação aos casos de Plasmodium Vivax,
-                                          selecionando o grupo de variáveis 'Ambiental e Saúde', nos municípios de Risco Baixo, observa-se, 
-                                          para a primeira coluna (PC1 - 1º componente Principal) que a Área Hidrográfica, Nuvem e Negativo para outros 
-                                          hemoparasitas pesquisados são positivamente correlacionados com o primeiro componente principal e são os mais 
-                                          importantes para explicar o mesmo.", align = "justify")))
+                          span(tags$i(h5("Por exemplo, quando se olha para o mapa de calor ao lado, para o ano de 2019, 
+                                          em relação aos casos de Plasmodium Vivax, selecionando o grupo de variáveis 
+                                          'Ambiental e Saúde', nos municípios de Risco Baixo, observa-se, para a primeira 
+                                          coluna (PC1 - 1º componente Principal) que a Área Hidrográfica, Nuvem e Negativo 
+                                          para outros hemoparasitas pesquisados são positivamente correlacionados com o primeiro 
+                                          componente principal e são os mais importantes para explicar o mesmo", align = "justify")))
                           
                          
                           ),
@@ -465,12 +466,19 @@ ui <- bootstrapPage(
                      ),
                      
                      span(tags$i(h5("A análise de componentes principais (PCA em inglês) é uma técnica usada para enfatizar 
-                                     a variação e revelar padrões fortes em um conjunto de dados e, portanto, é uma maneira de identificar a
-                                     relação entre características extraídas de dados.
-                                     Geralmente é usado para tornar os dados fáceis de explorar e visualizar.
-                                     As pontuações (scores) fornecem a composição  dos componentes principais (PCs)  em  relação  a amostra, no caso um 
-                                     agrupamento de municípios dividos por sua classificação de risco, ou seja, através deles pode-se ver a 
-                                     contribuição de cada munícipio para a decisão do algoritmo na construção daquele componente principal.", 
+                                     a variação e revelar padrões fortes em um conjunto de dados e, portanto, é uma maneira 
+                                     de identificar a relação entre características extraídas de dados. Geralmente é usado 
+                                     para tornar os dados fáceis de explorar e visualizar. As pontuações (scores) fornecem a 
+                                     composição dos componentes principais (PCs) em relação a amostra, no caso um agrupamento 
+                                     de municípios divididos por sua classificação de risco, ou seja, através deles pode-se 
+                                     ver a contribuição de cada munícipio para a decisão do algoritmo na construção daquele 
+                                     componente principal. Nesta aba, após selecionar todas as características necessárias, 
+                                     do lado direito da tela, irá aparecer no mapa, os diferentes scores de cada município 
+                                     dentro do componente principal selecionado, dado a seleção do ano de notificação, 
+                                     do grupo de variáveis, risco do município e tipo de Plasmodium. Logo abaixo do mapa, 
+                                     aparecerá os loadings das variáveis que obtiveram acima de 0.25 relacionadas ao componente 
+                                     principal selecionado. Assim, é possível analisar as influências das variáveis dentro daquele 
+                                     agrupamento de municípios.", 
                                     align = "justify"))),
 
                      
