@@ -1,12 +1,11 @@
 FROM rocker/shiny:4
 
 # Install tools
-RUN apt install vim -y
+RUN apt-get -y update
 
 # Install R Base Packages
-RUN apt-get -y update && apt-get install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+RUN apt-get install -y vim libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
-# Install R Packages inside R
 RUN R -e "install.packages('devtools', dependences=TRUE)"
 RUN R -e "install.packages('plotly', dependences=TRUE)"
 RUN R -e "install.packages('forcats', dependences=TRUE)"
@@ -42,6 +41,10 @@ RUN R -e "install.packages('hash', dependences=TRUE)"
 
 # # Install R Packages inside R from github
 RUN R -e "library(devtools); install_github('ramnathv/rCharts')"
+RUN R -e "install.packages('ggridges')"
+
+RUN ln -sf /dev/stdout /var/log/shiny-server/stdout.log \
+    && ln -sf /dev/stderr /var/log/shiny-server/stderr.log
 
 # Change user
 USER shiny
