@@ -66,7 +66,7 @@ frow1 <- fluidRow(
     status = "warning",
     solidHeader = TRUE,
     collapsible = TRUE,
-    showOutput("PlotRidges"),
+    showOutput("PlotRidges","nvd3"),
     footer = HTML('Source: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> Resident population by IBGE')
   )
 )
