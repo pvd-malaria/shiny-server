@@ -36,7 +36,6 @@ RUN R -e "install.packages('fpp3', dependences=TRUE)"
 RUN R -e "install.packages('showtext', dependences=TRUE)"
 RUN R -e "install.packages('htmlwidgets', dependences=TRUE)"
 RUN R -e "install.packages('ggplot2', dependences=TRUE)"
-RUN R -e "install.packages('ggridges', dependences=TRUE)"
 RUN R -e "install.packages('hash', dependences=TRUE)"
 
 # # Install R Packages inside R from github
