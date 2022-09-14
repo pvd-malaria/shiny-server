@@ -2,20 +2,16 @@ library(shiny)
 library(devtools)
 library(rCharts)
 library(shinydashboard)
-
 library(tidyverse)
 library(htmlwidgets)
 library(plotly)
+library(ggplot2)
+library(ggridges)
 
 viz2 <- readxl::read_excel('txpositivo.xlsx') %>% 
   janitor::clean_names()
 
-print('testing')
-
 summary(viz2)
-
-library(ggplot2)
-library(ggridges)
 names(viz2)
 
 library(hash)
@@ -70,7 +66,7 @@ frow1 <- fluidRow(
     status = "warning",
     solidHeader = TRUE,
     collapsible = TRUE,
-    plotOutput("PlotRidges"),
+    showOutput("PlotRidges"),
     footer = HTML('Source: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> Resident population by IBGE')
   )
 )
