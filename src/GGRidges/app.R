@@ -66,7 +66,7 @@ frow1 <- fluidRow(
     status = "warning",
     solidHeader = TRUE,
     collapsible = TRUE,
-    showOutput("PlotRidges","nvd3"),
+    plotOutput("PlotRidges"),
     footer = HTML('Source: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> Resident population by IBGE')
   )
 )
@@ -78,9 +78,9 @@ server <- shinyServer(function(input, output) {
     subset(viz2, uf == input$uf)
   })
   output$PlotRidges <- renderChart({
-    ggplot(data = data_input(), aes(x = propositivo, y = uf, fill = stat(x))) +
+      ggplot(data = data_input(), aes(x = propositivo, y = uf, fill = stat(x))) +
       geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
-      #scale_fill_gradient2(low = '#0D456E', mid='#1674b9', high = '#be1724')+
+      scale_fill_gradient2(low = '#0D456E', mid='#1674b9', high = '#be1724')+
       labs(title = 'Proporção de Casos Positivos (2007 - 2019)') +
       labs(x = 'Proporção', y = NULL) +
       labs(caption = 'Fonte: Sistema de Informações de Vigilância Epidemológica (SIVEP) - Malária') +
