@@ -68,7 +68,7 @@ frow1 <- fluidRow(
     solidHeader = TRUE,
     collapsible = TRUE,
     plotOutput("PlotRidges"),
-    footer = HTML('Source: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> Resident population by IBGE')
+    footer = HTML('Fonte: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> População residente segundo IBGE')
   )
 )
 
@@ -87,7 +87,7 @@ server <- shinyServer(function(input, output) {
    scale_fill_gradient2(low = '#0D456E', mid='#1674b9', high = '#be1724') +
    labs(title = 'Proporção de Casos Positivos (2007 - 2019)') +
    labs(x = 'Proporção', y = '') +
-   labs(caption = 'Fonte: Sistema de Informações de Vigilância Epidemológica (SIVEP) - Malária') +
+   # labs(caption = 'Fonte: Sistema de Informações de Vigilância Epidemológica (SIVEP) - Malária') +
    theme(text = element_text(family = 'Roboto'), plot.title = element_text(hjust = 0.5), plot.caption = element_text(hjust = 0.5))
  })
 })
