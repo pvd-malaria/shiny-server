@@ -288,13 +288,13 @@ sidebar <- dashboardSidebar(
   sidebarMenu(
     width = 4,
     menuItem(
-      text = "Treatment",
+      text = "Tratamento",
       tabName = 'tratamento'
     ),
-    menuItem(text = "Proportion of Malaria Falciparum",
+    menuItem(text = "Proporção de Malaria Falciparum",
              tabName = 'falciparum'),
 
-    menuItem(text = "Proportion of Malaria Vivax",
+    menuItem(text = "Proporção de Malaria Vivax",
              tabName = 'vivax'),
 
     menuItem(
@@ -319,19 +319,19 @@ body <- dashboardBody(
 
               fluidRow(
                 box(
-                  title = "Map by municipality",
+                  title = "Mapa por município",
                   status = 'primary',
                   width = 6,
                   leafletOutput('map')
                 ),
 
                 box(
-                  title = "Comparative by State*",
+                  title = "Comparativo por Estado*",
                   status = 'danger',
                   width = 6,
                   showOutput("plot","nvd3"),
-                  footer = HTML('*Proportion of cases that started treatment within 48 hours of symptoms onset
-                                in relation to the total number of cases')
+                  footer = HTML('*Proporção de casos que iniciaram o tratamento até 48 horas após o início dos sintomas
+                                em relação ao total de casos')
                   )),
 
               fluidRow(
@@ -352,18 +352,18 @@ body <- dashboardBody(
             h2(
               fluidRow(
                 box(
-                  title = "Map by municipality",
+                  title = "Mapa por município",
                   status = 'primary',
                   width = 6,
                   leafletOutput('map2')
                 ),
 
                 box(
-                  title = "Comparative by State*",
+                  title = "Comparativo por Estado*",
                   status = 'danger',
                   width = 6,
                   showOutput("plotFalcip","nvd3"),
-                  footer = HTML('*Percentage of cases by Malaria Plasmodium Falciparum')
+                  footer = HTML('*Porcentagem de casos por Malária Plasmodium Falciparum')
                 )),
 
               fluidRow(
@@ -383,18 +383,18 @@ body <- dashboardBody(
             h2(
               fluidRow(
                 box(
-                  title = "Map by municipality",
+                  title = "Mapa por município",
                   status = 'primary',
                   width = 6,
                   leafletOutput('map3')
                 ),
 
                 box(
-                  title = "Comparative by State*",
+                  title = "Comparativo por Estado*",
                   status = 'danger',
                   width = 6,
                   showOutput("plotVivax","nvd3"),
-                  footer = HTML('*Percentage of cases by Malaria Plasmodium Vivax')
+                  footer = HTML('*Porcentagem de casos por Malária Plasmodium Vivax')
                 )),
 
               fluidRow(
