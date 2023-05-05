@@ -281,7 +281,7 @@ server <- shinyServer(function(input, output, session) {
 
 # ui definition ------------------------------------------------------------
 
-header <- dashboardHeader(title = "Malaria")
+header <- dashboardHeader(title = "Malária")
 
 sidebar <- dashboardSidebar(
 
@@ -291,10 +291,10 @@ sidebar <- dashboardSidebar(
       text = "Tratamento",
       tabName = 'tratamento'
     ),
-    menuItem(text = "Proporção de Malaria Falciparum",
+    menuItem(text = "Proporção de Malária Falciparum",
              tabName = 'falciparum'),
 
-    menuItem(text = "Proporção de Malaria Vivax",
+    menuItem(text = "Proporção de Malária Vivax",
              tabName = 'vivax'),
 
     menuItem(
