@@ -59,4 +59,4 @@ RUN ln -sf /dev/stdout /var/log/shiny-server/stdout.log \
     && ln -sf /dev/stderr /var/log/shiny-server/stderr.log
 
 # Change user
-USER shiny
+#USER shiny
