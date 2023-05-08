@@ -47,13 +47,12 @@ RUN R -e "install.packages('ggmap', dependencies=TRUE)"
 RUN R -e "install.packages('mapview', dependencies=TRUE)"
 RUN R -e "install.packages('leafpop', dependencies=TRUE)"
 
-
-# # Install R Packages inside R from github
+# Install R Packages inside R from github
 RUN R -e "library(devtools); install_github('ramnathv/rCharts')"
 RUN R -e "install.packages('ggridges')"
 
-EXPOSE 8038
-EXPOSE 3838
+#EXPOSE 8038
+#EXPOSE 3838
 
 RUN ln -sf /dev/stdout /var/log/shiny-server/stdout.log \
     && ln -sf /dev/stderr /var/log/shiny-server/stderr.log
