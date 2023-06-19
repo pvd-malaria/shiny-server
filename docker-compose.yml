@@ -1,4 +1,8 @@
 version: '3'
+networks:
+  pvdnet:
+    name: pvdnet
+    driver: bridge
 services:
   promalaria-shiny:
     build:
@@ -6,6 +10,10 @@ services:
       dockerfile: Dockerfile
     container_name: promalaria-shiny
     volumes:
-      - ~/promalaria-orchestrator/src/apps/:/srv/shiny-server/
-      - ~/promalaria-orchestrator/shiny-server/logs/:/var/log/shiny-server/
+      - ~/shiny-server/src/:/srv/shiny-server/
+      - ~/shiny-server/logs/:/var/log/shiny-server/
+    ports:
+      - 3838:3838
     restart: unless-stopped
+    networks:
+      - pvdnet
