@@ -13,7 +13,7 @@ services:
       - ./src/:/srv/shiny-server/
       - ./logs/:/var/log/shiny-server/
     ports:
-      - 8038:3838
+      - 3838:3838
     restart: unless-stopped
     networks:
       - pvdnet
