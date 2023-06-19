@@ -52,7 +52,7 @@ suppressMessages({
     
     vetores <- vetores %>% 
       mutate(
-        Species = gsub("\xa0", " ", Species), # Non breaking space
+        Species = gsub("\u00A0", " ", Species, fixed = TRUE), # Non breaking space
         Species = gsub("\\s{2,5}", " ", Species), # Multiple whitespaces
         Species = trimws(Species),
         Infection = factor(Infection, c("Sim", "Não", ""), c("Sim", "Não", "NA"))) %>%
