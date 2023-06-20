@@ -1,0 +1,29 @@
+name: Shiny Malaria Deploy
+on:
+  push:
+    branches: [ production ]
+env:
+  SERVER_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY  }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create private key
+      run:
+       echo "$SERVER_PRIVATE_KEY" > private_key && chmod 0600 private_key;
+    - name: Set up deploy script
+      run: |
+        cat << EOF > deploy_script
+          #!/bin/bash
+          cmd1="rm -rf /home/ubuntu/shiny-server";
+          cmd2="GIT_SSH_COMMAND=\"ssh -i /home/ubuntu/.ssh/deploy\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/ubuntu/shiny-server";
+          cmd3="mkdir /home/ubuntu/shiny-server";
+          cmd4="docker-compose rm -sfv";
+          cmd5="yes | docker system prune";
+          cmd6="docker-compose up -d --build";
+          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@54.144.250.164 "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
+        EOF
+        chmod +x ./deploy_script
+    - name: Run deploy script
+      run: ./deploy_script
