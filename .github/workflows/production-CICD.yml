@@ -18,7 +18,7 @@ jobs:
           #!/bin/bash
           cmd1="rm -rf /home/ubuntu/shiny-server";
           cmd2="GIT_SSH_COMMAND=\"ssh -i /home/ubuntu/.ssh/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/ubuntu/shiny-server";
-          cmd3="mkdir /home/ubuntu/shiny-server";
+          cmd3="cd /home/ubuntu/shiny-server";
           cmd4="docker-compose rm -sfv";
           cmd5="yes | docker system prune";
           cmd6="docker-compose up -d --build";
