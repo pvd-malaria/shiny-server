@@ -15,7 +15,6 @@ jobs:
       run: |
         cat << EOF > deploy_script
           #!/bin/bash
-          cmd0="
           cmd1="rm -rf /home/inovia/shiny-server";
           cmd2="GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=no -i /home/inovia/deploy_keys/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/inovia/shiny-server";
           cmd3="cd /home/inovia/shiny-server";
