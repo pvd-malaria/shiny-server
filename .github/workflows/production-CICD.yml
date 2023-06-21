@@ -15,13 +15,14 @@ jobs:
       run: |
         cat << EOF > deploy_script
           #!/bin/bash
+          export SSHPASS=
           cmd1="rm -rf /home/inovia/shiny-server";
           cmd2="GIT_SSH_COMMAND=\"ssh -i /home/inovia/deploy_keys/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/inovia/shiny-server";
           cmd3="cd /home/inovia/shiny-server";
           cmd4="docker-compose rm -sfv";
           cmd5="yes | docker image prune";
           cmd6="docker-compose up -d --build";
-          #sshpass -e ssh inovia@laddem.nepo.unicamp.br "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
+          sshpass -e ssh inovia@laddem.nepo.unicamp.br "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
         EOF
         chmod +x ./deploy_script
     - name: Run deploy script
