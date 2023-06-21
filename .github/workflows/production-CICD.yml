@@ -2,8 +2,6 @@ name: Shiny Malaria Deploy
 on:
   push:
     branches: [ production ]
-env:
-  SSHPASS: ${{ secrets.SSH_PASSWORD }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +13,7 @@ jobs:
       run: |
         cat << EOF > deploy_script
           #!/bin/bash
+          export SSHPASS='${{ secrets.SSH_PASSWORD }}'
           cmd1="rm -rf /home/inovia/shiny-server";
           cmd2="GIT_SSH_COMMAND=\"ssh -i /home/inovia/deploy_keys/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/inovia/shiny-server";
           cmd3="cd /home/inovia/shiny-server";
