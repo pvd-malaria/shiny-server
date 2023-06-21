@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install sshpass
-      run: apt -y install sshpass
+      run: sudo apt -y install sshpass
     - name: Create private key
       run:
        echo "$SERVER_PRIVATE_KEY" > private_key && chmod 0600 private_key;
