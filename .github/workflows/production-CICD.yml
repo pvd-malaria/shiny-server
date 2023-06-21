@@ -4,11 +4,14 @@ on:
     branches: [ production ]
 env:
   SERVER_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY  }}
+  SSHPASS: ${{ secrets.SSH_PASSWORD }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install sshpass
+      run: apt -y install sshpass
     - name: Create private key
       run:
        echo "$SERVER_PRIVATE_KEY" > private_key && chmod 0600 private_key;
@@ -16,13 +19,13 @@ jobs:
       run: |
         cat << EOF > deploy_script
           #!/bin/bash
-          cmd1="rm -rf /home/ubuntu/shiny-server";
-          cmd2="GIT_SSH_COMMAND=\"ssh -i /home/ubuntu/.ssh/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/ubuntu/shiny-server";
-          cmd3="cd /home/ubuntu/shiny-server";
+          cmd1="rm -rf /home/inovia/shiny-server";
+          cmd2="GIT_SSH_COMMAND=\"ssh -i /home/inovia/deploy_keys/deploy_shiny\" git clone -b production --single-branch git@github.com:pvd-malaria/shiny-server.git /home/inovia/shiny-server";
+          cmd3="cd /home/inovia/shiny-server";
           cmd4="docker-compose rm -sfv";
-          cmd5="yes | docker system prune";
+          cmd5="yes | docker image prune";
           cmd6="docker-compose up -d --build";
-          ssh -o StrictHostKeyChecking=no -i private_key ubuntu@54.144.250.164 "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
+          sshpass -e ssh inovia@laddem.nepo.unicamp.br "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
         EOF
         chmod +x ./deploy_script
     - name: Run deploy script
