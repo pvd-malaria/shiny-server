@@ -21,7 +21,8 @@ jobs:
           cmd4="docker-compose rm -sfv";
           cmd5="yes | docker image prune";
           cmd6="docker-compose up -d --build";
-          sshpass -e ssh -o StrictHostKeyChecking=no inovia@laddem.nepo.unicamp.br "\$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
+          sudocmd="printf '%s\n' \"$SSHPASS\" | sudo -p \"\" -S";
+          sshpass -e ssh -o StrictHostKeyChecking=no inovia@laddem.nepo.unicamp.br "\$sudocmd \$cmd1; \$cmd2; \$cmd3; \$cmd4; \$cmd5; \$cmd6;"
         EOF
         chmod +x ./deploy_script
     - name: Run deploy script
