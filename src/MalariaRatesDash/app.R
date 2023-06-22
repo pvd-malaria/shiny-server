@@ -13,7 +13,7 @@ library(rCharts)
 library(shinydashboard)
 
 
-ObitosIdade <- read.table ("TBMPad_TxInc.csv", fileEncoding="latin1", header = T ,sep=',', dec='.')
+ObitosIdade <- read.table ("TBMPad_TxInc.csv", fileEncoding="utf8", header = T ,sep=',', dec='.')
 
 ObitosIdade$Ano <- as.numeric(ObitosIdade$Ano)
 
