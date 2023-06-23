@@ -56,7 +56,8 @@ frow1 <- fluidRow(
   box(
     title = "Chart",
     status = "warning",
-    plotOutput("PlotRidges"),
+    width = 12,
+    plotOutput(outputId ="PlotRidges", width="100%", height = 800),
     solidHeader = TRUE,
     collapsible = TRUE,
     footer = HTML('Fonte: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> População residente segundo IBGE')
@@ -77,10 +78,20 @@ server <- shinyServer(function(input, output) {
     geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
     scale_fill_viridis_c(name = "%", option = "C") + xlim(0,36)+
     theme(legend.position = 'none')+
-    labs(title = 'Proporção de casos positivos entre os casos investigados segundo Unidade da Federação, 2007-2019') +
+    labs(title = 'Proporção de casos positivos entre os casos investigados
+     segundo Unidade da Federação, 2007-2019') +
     labs(x = "Proporção (%)",
           y = "Unidade da Federação-UF") +
-    labs(caption = "Fonte: SIVEP Malaria, 2007-2019") })
+    labs(caption = "Fonte: SIVEP Malaria, 2007-2019") +
+    theme(axis.text.x = element_text(size=16)) +
+    theme(axis.text.y = element_text(size=16)) +
+    theme(plot.title = element_text(size=22)) +
+    theme(plot.caption = element_text(size=12)) +
+    theme(axis.title.x = element_text(size=16)) +
+    theme(axis.title.y = element_text(size=16)) 
+
+
+    })
 })
 
 shinyApp(ui, server)
