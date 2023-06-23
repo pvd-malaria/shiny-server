@@ -46,16 +46,26 @@ ufsExtenso[['TO']] <- 'Tocantins'
 
 viz2$uf <- sapply(viz2$uf, function(x) ufsExtenso[[x]])
 
+header <- dashboardHeader(title = "Proporção de Casos Positivos (2007 - 2019)")
+
+#Sidebar content of the dashboard
+sidebar <- dashboardSidebar()
+
 
 frow1 <- fluidRow(
   box(
-    plotOutput("PlotRidges")
+    title = "Chart",
+    status = "warning",
+    plotOutput("PlotRidges"),
+    solidHeader = TRUE,
+    collapsible = TRUE,
+    footer = HTML('Fonte: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> População residente segundo IBGE')
   )
 )
 
 body <- dashboardBody(frow1)
 
-ui <- fluidPage(title = 'GGRidges', body)
+ui <- dashboardPage(title = 'GGRidges', header, sidebar, body, skin='black')
 
 server <- shinyServer(function(input, output) { 
   data_input <- reactive({
