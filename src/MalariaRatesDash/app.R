@@ -35,17 +35,22 @@ sidebar <- dashboardSidebar(
 
 frow1 <- fluidRow(
   
+  fluidRow(
   box(
     title = "Taxas de Incidência do estado selecionado:"
+    ,width = 11
     ,status = "warning"
     ,solidHeader = TRUE 
     ,collapsible = TRUE 
     ,showOutput("plotIncidence", "nvd3")
     ,footer = HTML('Fonte: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> População Residêncial por IBGE'
   ))
+  ),
   
-  ,box(
+  fluidRow(
+  box(
     title = "Taxas de mortalidade padronizadas por idade* de malária do estado selecionado"
+    ,width = 11
     ,status = "danger"
     ,solidHeader = TRUE 
     ,collapsible = TRUE 
@@ -54,6 +59,7 @@ frow1 <- fluidRow(
     *Padrão por idade define uma idade constante da população & estrutura (População do Brasil, 2010) para permitir a comparação entre estados e
     com tempo'
   )) 
+  )
   
 )
 
