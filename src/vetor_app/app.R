@@ -205,7 +205,7 @@ server <- shinyServer(function(input, output, session) {
 
 ui <- bootstrapPage(
   navbarPage(theme = shinytheme("flatly"), collapsible = TRUE,
-             HTML('<a style="text-decoration:none;cursor:default;color:white;" "background-color:white;" class="active" href="#">Malaria Vector platform</a>'),
+             HTML('<a style="text-decoration:none;cursor:default;color:white;" "background-color:white;" class="active" href="#">Plataforma de Vetores da Malária</a>'),
              tags$head(tags$style(HTML('.navbar-static-top {background-color: #BE1724;}',
                                        '.navbar-default .navbar-nav>.active>a {background-color: #BE1724;}'))),
              windowTitle = "Malaria Vector platform"),
