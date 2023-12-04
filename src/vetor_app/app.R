@@ -116,7 +116,7 @@ server <- shinyServer(function(input, output, session) {
                                      "Estado:", ~State, "<br>",
                                      "Município:", ~Municipality,"<br>",
                                      "Localização:", ~Location, "<br>")) %>%  
-      addLegend(position = "bottomright", title = "Detecção de <i>Plasmodium sp</i>", data = vetores,
+      addLegend(position = "bottomright", title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>", data = vetores,
                 pal = factPal, values = ~Infection)
   })
   
@@ -190,7 +190,7 @@ server <- shinyServer(function(input, output, session) {
     
     proxy %>% 
       clearControls() %>% 
-      addLegend(position = "bottomright", title = "Detecção de <i>Plasmodium sp</i>",
+      addLegend(position = "bottomright", title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
                 pal = factPal, values = ~Infection)
     
   })
