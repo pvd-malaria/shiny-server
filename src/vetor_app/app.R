@@ -93,7 +93,6 @@ base_bb <- st_sf(a = 1:2,
                  crs = 4326)
 
 server <- shinyServer(function(input, output, session) {
-    
   # base map ------------------------------------------------------------------
   factPal <- colorFactor(palette = "inferno", levels = infection_select, ordered = FALSE)
   # --------------------------------------------------- Server -----------------------------------------------------------------------
@@ -234,6 +233,12 @@ ui <- bootstrapPage(
                                                              options = list(
                                                                placeholder = 'Digite para procurar a espécie',
                                                                onInitialize = I('function() { this.setValue(""); }')
+                                                               render = I('{
+                                                                 option: function(item, escape) {
+                                                                   return "<span style="font-style:italic">" + item.label + "</span>";
+                                                                 }
+                                                                }
+                                                              ')
                                                              )
                                                              
                                               )),
