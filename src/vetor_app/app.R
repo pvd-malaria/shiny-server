@@ -232,7 +232,7 @@ ui <- bootstrapPage(
                                                              choices = species_select,
                                                              options = list(
                                                                placeholder = 'Digite para procurar a espécie',
-                                                               onInitialize = I('function() { this.setValue(""); }')
+                                                               onInitialize = I('function() { this.setValue(""); }'),
                                                                render = I('{
                                                                  option: function(item, escape) {
                                                                    return "<span style="font-style:italic">" + item.label + "</span>";
