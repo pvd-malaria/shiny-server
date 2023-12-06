@@ -37,7 +37,7 @@ for latlon in duplicated_lat_lon:
         new_lon = lon + radius * np.sin(angle)
         new_latlon = '{:.5f};{:.5f}'.format(new_lat, new_lon).replace('.', ',')
         positions[latlon].append(new_latlon)
-        angle += step * i
+        angle += step
     all_latitudes = [x.split(';')[0] for x in positions[latlon]]
     all_longitudes = [x.split(';')[1] for x in positions[latlon]]
     df.loc[df['lat-lon'] == latlon, 'Latitude'] = all_latitudes
