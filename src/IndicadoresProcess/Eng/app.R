@@ -321,18 +321,21 @@ body <- dashboardBody(
                 box(
                   title = "Mapa por município",
                   status = 'primary',
-                  width = 6,
+                  width = 12,
                   leafletOutput('map')
-                ),
+                )
+              ),
 
+              fluidRow(
                 box(
                   title = "Comparativo por Estado*",
                   status = 'danger',
-                  width = 6,
+                  width = 12,
                   showOutput("plot","nvd3"),
                   footer = HTML('*Proporção de casos que iniciaram o tratamento até 48 horas após o início dos sintomas
                                 em relação ao total de casos')
-                  )),
+                )
+              ),
 
               fluidRow(
                 box(
@@ -354,17 +357,20 @@ body <- dashboardBody(
                 box(
                   title = "Mapa por município",
                   status = 'primary',
-                  width = 6,
+                  width = 12,
                   leafletOutput('map2')
-                ),
-
+                )
+              ),
+              
+              fluidRow(
                 box(
                   title = "Comparativo por Estado*",
                   status = 'danger',
-                  width = 6,
+                  width = 12,
                   showOutput("plotFalcip","nvd3"),
                   footer = HTML('*Porcentagem de casos por Malária Plasmodium Falciparum')
-                )),
+                )
+              ),
 
               fluidRow(
                 box(
@@ -385,17 +391,21 @@ body <- dashboardBody(
                 box(
                   title = "Mapa por município",
                   status = 'primary',
-                  width = 6,
+                  width = 12,
                   leafletOutput('map3')
-                ),
+                )
+              ),
 
+              fluidRow(
                 box(
                   title = "Comparativo por Estado*",
                   status = 'danger',
-                  width = 6,
+                  width = 12,
                   showOutput("plotVivax","nvd3"),
                   footer = HTML('*Porcentagem de casos por Malária Plasmodium Vivax')
-                )),
+                )
+              ),
+
 
               fluidRow(
                 box(

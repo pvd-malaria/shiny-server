@@ -13,11 +13,11 @@ library(rCharts)
 library(shinydashboard)
 
 
-ObitosIdade <- read.table ("TBMPad_TxInc.csv", fileEncoding="latin1", header = T ,sep=',', dec='.')
+ObitosIdade <- read.table ("TBMPad_TxInc.csv", fileEncoding="utf8", header = T ,sep=',', dec='.')
 
 ObitosIdade$Ano <- as.numeric(ObitosIdade$Ano)
 
-header <- dashboardHeader(title = "Malaria - Brazil")  
+header <- dashboardHeader(title = "Malaria - Brasil")  
 
 #Sidebar content of the dashboard
 sidebar <- dashboardSidebar(
@@ -25,7 +25,7 @@ sidebar <- dashboardSidebar(
     menuItem("Dashboard", tabName = "Choose State", icon = icon("dashboard")),
   
     selectInput(inputId = "uf",
-                label = "Choose State:",
+                label = "Escolha um Estado:",
                 choices = unique(ObitosIdade$UF),
                 selected = "RO")
   )
@@ -35,32 +35,38 @@ sidebar <- dashboardSidebar(
 
 frow1 <- fluidRow(
   
+  fluidRow(
   box(
-    title = "Incidence Rate from selected state"
+    title = "Taxas de Incidência do estado selecionado:"
+    ,width = 11
     ,status = "warning"
     ,solidHeader = TRUE 
     ,collapsible = TRUE 
     ,showOutput("plotIncidence", "nvd3")
-    ,footer = HTML('Source: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> Resident population by IBGE'
+    ,footer = HTML('Fonte: Sistema de Informações de Vigilância Epidemiológica (SIVEP) - Malária <br/> População Residêncial por IBGE'
   ))
+  ),
   
-  ,box(
-    title = "Age-standardized death rates* from malaria of the selected state"
+  fluidRow(
+  box(
+    title = "Taxas de mortalidade padronizadas por idade* de malária do estado selecionado"
+    ,width = 11
     ,status = "danger"
     ,solidHeader = TRUE 
     ,collapsible = TRUE 
     ,showOutput("PlotDeath","nvd3")
-    ,footer = HTML('Source: Datasus - Malaria <br/> Resident population by IBGE </br> 
-    *Age-standardization assumes a constant population age & structure (Population of Brazil, 2010) to allow for comparisons between states and
-    with time'
+    ,footer = HTML('Fonte: Datasus - Malaria <br/> População Residêncial por IBGE </br> 
+    *Padrão por idade define uma idade constante da população & estrutura (População do Brasil, 2010) para permitir a comparação entre estados e
+    com tempo'
   )) 
+  )
   
 )
 
 # combine the two fluid rows to make the body
 body <- dashboardBody(frow1)
 
-ui <- dashboardPage(title = 'Malaria Rates - Brazil', header, sidebar, body, skin='black')
+ui <- dashboardPage(title = 'Taxas de Malária - Brasil', header, sidebar, body, skin='black')
 
 # create the server functions for the dashboard  
 server <- shinyServer(function(input, output) { 
@@ -77,7 +83,7 @@ output$PlotDeath <- renderChart({
   pt1$chart(useInteractiveGuideline=TRUE, showControls = F, margin = list(left = 100, right = 100))
   pt1$addParams(dom = 'PlotDeath')
   pt1$xAxis(tickValues = ObitosIdade$Ano)
-  pt1$yAxis(axisLabel = "Age-standardized death rates from malaria per 100,000 population")
+  pt1$yAxis(axisLabel = "Taxas de mortalidade padronizadas por idade por 100.000 habitantes")
   return(pt1)
 })
 
@@ -88,7 +94,7 @@ output$plotIncidence <- renderChart({
   pt2$chart(useInteractiveGuideline=TRUE, showControls = F, margin = list(left = 100, right = 100))
   pt2$addParams(dom = 'plotIncidence')
   pt2$xAxis(tickValues = ObitosIdade$Ano)
-  pt2$yAxis(axisLabel = "Incidence Rate per 1,000 population")
+  pt2$yAxis(axisLabel = "Taxas de incidência por 1.000 habitantes")
   return(pt2)
   
 })
