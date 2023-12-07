@@ -81,12 +81,12 @@ tmpPal <- c("#000000", "#BB3655", "#FFEB3B")
 server <- shinyServer(function(input, output, session) {
   #factPal <- colorFactor(palette = "inferno", levels = infection_select, ordered = FALSE)
   factPal <- colorFactor(palette = tmpPal, levels = infection_select, ordered = FALSE)
-  
+
   output$map <- renderLeaflet({
     basemap <- municipios2 %>%
       st_make_valid()
     
-    leaflet(basemap,options = leafletOptions(minZoom = 5, maxZoom = 18)) %>%
+    leaflet(basemap, options = leafletOptions(minZoom = 5, maxZoom = 18)) %>%
       addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
         fitBounds(-75, -18, -46, 5) %>%
           addCircleMarkers(
@@ -115,7 +115,8 @@ server <- shinyServer(function(input, output, session) {
               title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
               data = vetores,
               pal = factPal,
-              values = ~Infection
+              values = ~Infection,
+              opacity = 1
             )
   })
 
@@ -158,32 +159,49 @@ server <- shinyServer(function(input, output, session) {
       leafletProxy("map") %>%
         clearMarkers() %>%
           clearShapes() %>% 
-            clearControls()
+            clearControls() %>%
+              addLegend(
+                position = "bottomright",
+                title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
+                data = vetores,
+                pal = factPal,
+                values = ~Infection,
+                opacity = 1
+              )
     } else {
       leafletProxy("map") %>%
         clearMarkers() %>%
           clearShapes() %>%
-            addCircleMarkers(
-              data = vetores,
-              lng = ~Longitude,
-              lat = ~Latitude,
-              layerId=~codigo,
-              color = ~factPal(Infection),
-              radius = 5,
-              fillOpacity = 1,
-              stroke = FALSE,
-              popup = paste(
-                "ID", vetores$ID, "<br>",
-                "Espécie:",  vetores$Species, "<br>",
-                "Referência:", vetores$Reference, "<br>",
-                "Ano de publicação:", vetores$Publication.Year, "<br>",
-                "Data de inicio da coleta:", vetores$Collection_data_start, "<br>",
-                "Data final da coleta:", vetores$Collection_data_end,"<br>",
-                "Estado:", vetores$State, "<br>",
-                "Município:", vetores$Municipality,"<br>",
-                "Localização:", vetores$Location, "<br>"
-              )
-            )
+            clearControls() %>%
+              addCircleMarkers(
+                data = vetores,
+                lng = ~Longitude,
+                lat = ~Latitude,
+                layerId=~codigo,
+                color = ~factPal(Infection),
+                radius = 5,
+                fillOpacity = 1,
+                stroke = FALSE,
+                popup = paste(
+                  "ID", vetores$ID, "<br>",
+                  "Espécie:",  vetores$Species, "<br>",
+                  "Referência:", vetores$Reference, "<br>",
+                  "Ano de publicação:", vetores$Publication.Year, "<br>",
+                  "Data de inicio da coleta:", vetores$Collection_data_start, "<br>",
+                  "Data final da coleta:", vetores$Collection_data_end,"<br>",
+                  "Estado:", vetores$State, "<br>",
+                  "Município:", vetores$Municipality,"<br>",
+                  "Localização:", vetores$Location, "<br>"
+                )
+              ) %>%
+                addLegend(
+                  position = "bottomright",
+                  title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
+                  data = vetores,
+                  pal = factPal,
+                  values = ~Infection,
+                  opacity = 1
+                )
     }
   })
 
@@ -191,26 +209,36 @@ server <- shinyServer(function(input, output, session) {
     leafletProxy("map") %>%
       clearMarkers() %>%
         clearShapes() %>%
-          addCircleMarkers(
-            data = subsetData(),
-            lng = ~Longitude,
-            lat = ~Latitude,
-            layerId=~codigo,
-            color = ~factPal(subsetData()$Infection),
-            radius = 2,
-            fillOpacity = 1,
-            popup = paste(
-              "ID", subsetData()$ID, "<br>",
-              "Espécie:",  subsetData()$Species, "<br>",
-              "Referência:", subsetData()$Reference, "<br>",
-              "Ano de publicação:", subsetData()$Publication.Year, "<br>",
-              "Data de inicio da coleta:", subsetData()$Collection_data_start, "<br>",
-              "Data final da coleta:", subsetData()$Collection_data_end,"<br>",
-              "Estado:", subsetData()$State, "<br>",
-              "Município:", subsetData()$Municipality,"<br>",
-              "Localização:", subsetData()$Location, "<br>"
-            )
-          )
+          clearControls() %>%
+            addCircleMarkers(
+              data = subsetData(),
+              lng = ~Longitude,
+              lat = ~Latitude,
+              layerId=~codigo,
+              color = ~factPal(subsetData()$Infection),
+              radius = 5,
+              fillOpacity = 1,
+              stroke = FALSE,
+              popup = paste(
+                "ID", subsetData()$ID, "<br>",
+                "Espécie:",  subsetData()$Species, "<br>",
+                "Referência:", subsetData()$Reference, "<br>",
+                "Ano de publicação:", subsetData()$Publication.Year, "<br>",
+                "Data de inicio da coleta:", subsetData()$Collection_data_start, "<br>",
+                "Data final da coleta:", subsetData()$Collection_data_end,"<br>",
+                "Estado:", subsetData()$State, "<br>",
+                "Município:", subsetData()$Municipality,"<br>",
+                "Localização:", subsetData()$Location, "<br>"
+              )
+            ) %>%
+              addLegend(
+                position = "bottomright",
+                title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
+                data = vetores,
+                pal = factPal,
+                values = ~Infection,
+                opacity = 1
+              )
   })
 
   observeEvent(input$species_filter, {
@@ -221,8 +249,10 @@ server <- shinyServer(function(input, output, session) {
         addLegend(
           position = "bottomright",
           title = "Detecção de <span style=\"font-style:italic\">Plasmodium sp.</span>",
+          data = vetores,
           pal = factPal,
-          values = ~Infection
+          values = ~Infection,
+          opacity = 1
         )
   })
 })
