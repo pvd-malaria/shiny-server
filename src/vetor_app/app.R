@@ -100,7 +100,7 @@ server <- shinyServer(function(input, output, session) {
             stroke = FALSE,
             popup = paste(
               "ID", ~ID, "<br>",
-              "Espécie:",  ~Species, "<br>",
+              "Espécie:", "<span style=\"font-style:italic\">", ~Species, "</span><br>",
               "Referência:", ~Reference, "<br>",
               "Ano de publicação:", ~Publication.Year, "<br>",
               "Data de inicio da coleta:", ~Collection_data_start, "<br>",
@@ -184,7 +184,7 @@ server <- shinyServer(function(input, output, session) {
                 stroke = FALSE,
                 popup = paste(
                   "ID", vetores$ID, "<br>",
-                  "Espécie:",  vetores$Species, "<br>",
+                  "Espécie:", "<span style=\"font-style:italic\">", vetores$Species, "</span><br>",
                   "Referência:", vetores$Reference, "<br>",
                   "Ano de publicação:", vetores$Publication.Year, "<br>",
                   "Data de inicio da coleta:", vetores$Collection_data_start, "<br>",
@@ -221,7 +221,7 @@ server <- shinyServer(function(input, output, session) {
               stroke = FALSE,
               popup = paste(
                 "ID", subsetData()$ID, "<br>",
-                "Espécie:",  subsetData()$Species, "<br>",
+                "Espécie:", "<span style=\"font-style:italic\">", subsetData()$Species, "</span><br>",
                 "Referência:", subsetData()$Reference, "<br>",
                 "Ano de publicação:", subsetData()$Publication.Year, "<br>",
                 "Data de inicio da coleta:", subsetData()$Collection_data_start, "<br>",
